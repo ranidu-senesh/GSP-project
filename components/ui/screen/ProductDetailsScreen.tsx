@@ -27,6 +27,7 @@ const [primaryImage,setprimaryImage]= useState(productImages[0].uri);
     return(
        
 <View style={styles.container}>
+    <ScrollView>
 <View style={styles.top}>
     <View style={styles.imagebg}>
    <Image source={{uri: primaryImage }} 
@@ -72,6 +73,7 @@ const [primaryImage,setprimaryImage]= useState(productImages[0].uri);
 </View>
 <View style={styles.review}>
 <ReviewWidget/></View>
+</ScrollView>
 </View>
         
     )
