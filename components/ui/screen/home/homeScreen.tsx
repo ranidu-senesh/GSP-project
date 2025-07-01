@@ -133,15 +133,15 @@ const HomeScreen = ({ navigation }: any) => {
     navigation.navigate('BiddingDetails', { biddingId });
   };
 
-  const navigateToContactUs = () => {
+  const ContactUs = () => {
     navigation.navigate('ContactUs');
   };
 
-  const navigateToAboutUs = () => {
+  const AboutUs = () => {
     navigation.navigate('AboutUs');
   };
 
-  const navigateToPaymentDetails = () => {
+  const PaymentDetails = () => {
     navigation.navigate('PaymentDetails');
   };
 
@@ -317,19 +317,18 @@ const HomeScreen = ({ navigation }: any) => {
 
       {/* Footer Links */}
       <View style={styles.footerLinksContainer}>
-        <TouchableOpacity onPress={navigateToAboutUs} style={styles.footerLink}>
+        <TouchableOpacity  onPress={() => navigation.navigate('About Us')}>
           <Text style={styles.footerLinkText}>About Us</Text>
         </TouchableOpacity>
         
-        <TouchableOpacity onPress={navigateToContactUs} style={styles.footerLink}>
+        <TouchableOpacity  onPress={() => navigation.navigate('Contact Us')}>
           <Text style={styles.footerLinkText}>Contact Us</Text>
         </TouchableOpacity>
         
-        <TouchableOpacity onPress={navigateToPaymentDetails} style={styles.footerLink}>
+        <TouchableOpacity onPress={() => navigation.navigate('Payment Details')}>
           <Text style={styles.footerLinkText}>Payment Details</Text>
         </TouchableOpacity>
       </View>
-
       {/* Call to Action */}
       <TouchableOpacity 
         style={styles.ctaButton}
