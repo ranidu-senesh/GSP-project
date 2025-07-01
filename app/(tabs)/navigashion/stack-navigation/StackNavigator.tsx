@@ -10,7 +10,9 @@ import ProductUploadScreen from '@/components/ui/screen/home/others/orders/Produ
 import AboutUs from '@/components/ui/screen/homescreen/AboutUs';
 import ContactUs from '@/components/ui/screen/homescreen/ContactUs';
 import PaymentDetails from '@/components/ui/screen/homescreen/PaymentDetails';
-
+import CashOnDeliveryScreen from '@/components/ui/screen/homescreen/CashOnDeliveryScreen';
+import CheckoutScreen from '@/components/ui/screen/home/others/orders/CheckoutScreen';
+import homeCartScreen from '@/components/ui/screen/home/homeCartScreen'
 const stack = createStackNavigator();
 
 
@@ -48,7 +50,7 @@ return(
         options={{title:'Admin panel'}}
         component={ProductUploadScreen}/>
 
-        <stack.Screen name={'About Us'}
+       <stack.Screen name={'About Us'}
         options={{title:'About Us'}}
         component={AboutUs}/>
 
@@ -59,6 +61,18 @@ return(
         <stack.Screen name={'Payment Details'}
         options={{title:'payment details'}}
         component={PaymentDetails}/>
+
+<stack.Screen name={'CashOnDelivery'}
+        options={{title:'Cash On Delivery'}}
+        component={CashOnDeliveryScreen}/>
+
+        <stack.Screen name={'CheckoutScreen'}
+        options={{title:'Ckeckout Screen'}}
+        component={CheckoutScreen}/>
+
+        <stack.Screen name={'CartScreen'}
+        options={{title:'cart'}}
+        component={homeCartScreen}/>
 
         
     </stack.Navigator>

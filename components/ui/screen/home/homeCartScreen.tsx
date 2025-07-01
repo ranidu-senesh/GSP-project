@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { 
   View, 
   Text, 
@@ -14,9 +14,10 @@ import { Searchbar, Button, Checkbox } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import DisplayTypeWidget from '../share/DisplayTypeWidget';
 
+
 const { width } = Dimensions.get('window');
 
-const OrganicCartScreen = () => {
+const OrganicCartScreen = ({ navigation, route }: any) => {
   // State
   const [searchQuery, setSearchQuery] = useState('');
   const [isGridEnabled, setIsGridEnabled] = useState(true);
@@ -77,9 +78,27 @@ const OrganicCartScreen = () => {
     }
   ]);
 
-  // Animations
-  const spinValue = new Animated.Value(0);
-  
+  useEffect(() => {
+   if (route?.params?.addedProduct) {
+    setCartItems(prevItems => {
+      const exists = prevItems.find(item => item.id === route.params.addedProduct.id);
+      if (exists) {
+        // If product already in cart, increase quantity
+        return prevItems.map(item =>
+          item.id === route.params.addedProduct.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      } else {
+        // If new product, add to cart
+        return [...prevItems, { ...route.params.addedProduct, selected: true }];
+      }
+    });
+    // Clear the param so it doesn't add again on re-render
+    navigation.setParams({ addedProduct: undefined });
+  }
+}, [route?.params?.addedProduct, navigation]);
+  const spinValue = useState(new Animated.Value(0))[0];
   const spin = () => {
     spinValue.setValue(0);
     Animated.timing(spinValue, {
@@ -292,17 +311,23 @@ const OrganicCartScreen = () => {
         </View>
         <Text style={styles.deliveryText}>Free delivery in Colombo on orders over Rs. 2000</Text>
         <Button 
-          mode="contained" 
-          style={[
-            styles.checkoutButton,
-            selectedItemsCount === 0 && styles.disabledButton
-          ]}
-          labelStyle={styles.checkoutButtonText}
-          disabled={selectedItemsCount === 0}
-          onPress={() => console.log('Proceeding with selected items')}
-        >
-          Checkout ({selectedItemsCount})
-        </Button>
+  mode="contained" 
+  style={[
+    styles.checkoutButton,
+    selectedItemsCount === 0 && styles.disabledButton
+  ]}
+  labelStyle={styles.checkoutButtonText}
+  disabled={selectedItemsCount === 0}
+  onPress={() => {
+    const selectedItems = cartItems.filter(item => item.selected);
+    navigation.navigate('CheckoutScreen', {
+      selectedItems,
+      total: calculateSelectedTotal(),
+    });
+  }}
+>
+  Checkout ({selectedItemsCount})
+</Button>
       </View>
     </View>
   );

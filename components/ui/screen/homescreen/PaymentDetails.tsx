@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
-const PaymentDetails = () => {
+const PaymentDetails = ({navigation}:any) => {
   const paymentMethods = [
     {
       id: 1,
@@ -33,6 +33,13 @@ const PaymentDetails = () => {
       description: 'Pay when you receive your order'
     },
   ];
+  const handlePaymentMethodPress = (method: any) => {
+    if (method.name === 'Cash on Delivery') {
+    navigation.navigate('CashOnDelivery');
+  } else {
+    alert(`Selected: ${method.name}`);
+  }
+};
 
   return (
     <ScrollView style={styles.container}>
@@ -47,7 +54,10 @@ const PaymentDetails = () => {
         <Text style={styles.sectionTitle}>Available Payment Methods</Text>
         
         {paymentMethods.map(method => (
-          <TouchableOpacity key={method.id} style={styles.paymentMethod}>
+          <TouchableOpacity key={method.id}
+           style={styles.paymentMethod}
+            onPress={() => handlePaymentMethodPress(method)}
+        >
             <View style={styles.methodLeft}>
               <Image 
                 source={{ uri: method.image }} 
@@ -60,6 +70,7 @@ const PaymentDetails = () => {
               </View>
             </View>
             <MaterialIcons name="chevron-right" size={24} color="#666" />
+           
           </TouchableOpacity>
         ))}
       </View>
