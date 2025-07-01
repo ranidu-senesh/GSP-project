@@ -7,6 +7,7 @@ import LoginScreen from '@/components/ui/screen/security/LoginScreen';
 import signupScreen from '@/components/ui/screen/security/signupScreen';
 import signupverifyScreenEmail from '@/components/ui/screen/security/signupverifyScreenEmail';
 import ProductUploadScreen from '@/components/ui/screen/home/others/orders/ProductUploadScreen';
+import homeMenuScreen from '@/components/ui/screen/home/homeMenuScreen';
 const stack = createStackNavigator();
 
 
@@ -43,6 +44,10 @@ return(
         <stack.Screen name={'ProductUpload'}
         options={{title:'Admin panel'}}
         component={ProductUploadScreen}/>
+
+         <stack.Screen name={'homemenu'}
+        options={{title:'Admin panel'}}
+        component={homeMenuScreen}/>
   
 
     </stack.Navigator>
