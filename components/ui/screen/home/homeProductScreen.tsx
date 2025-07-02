@@ -31,7 +31,7 @@ const manageGridView=({state}:any)=>{
     <ScrollView
     showsVerticalScrollIndicator={false}>
      <ProductGridViewWidget navigation={navigation}/>
-    <ProductGridViewWidget/>
+    <ProductGridViewWidget navigation={navigation}/>
     <ProductGridViewWidget/>
     <ProductGridViewWidget/>
     </ScrollView>)
@@ -39,7 +39,7 @@ const manageGridView=({state}:any)=>{
     <ScrollView
     showsVerticalScrollIndicator={false}>
      <ProductListViewWidget navigation={navigation}/>
-      <ProductListViewWidget/>
+      <ProductListViewWidget navigation={navigation}/>
        <ProductListViewWidget/>
         <ProductListViewWidget/>
     

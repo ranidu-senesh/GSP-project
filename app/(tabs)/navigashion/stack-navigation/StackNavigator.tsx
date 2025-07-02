@@ -1,6 +1,5 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeBottomTabNavigation from '../tab-navigation/HomeBottomtabnavigation';
-
 import MyOrderTopTabNavigation from '../tab-navigation/MyOrderTopTabNavigation';
 import ProductDetailsScreen from '@/components/ui/screen/ProductDetailsScreen';
 import LoginScreen from '@/components/ui/screen/security/LoginScreen';
@@ -13,6 +12,10 @@ import PaymentDetails from '@/components/ui/screen/homescreen/PaymentDetails';
 import CashOnDeliveryScreen from '@/components/ui/screen/homescreen/CashOnDeliveryScreen';
 import CheckoutScreen from '@/components/ui/screen/home/others/orders/CheckoutScreen';
 import homeCartScreen from '@/components/ui/screen/home/homeCartScreen'
+import homeBookmarkScreen from '@/components/ui/screen/home/homeBookmarkScreen';
+import BulkBuyingScreen from '@/components/ui/screen/homescreen/BulkBuyingScreen';
+import BiddingDetailsScreen from '@/components/ui/screen/homescreen/BiddingDetailsScreen';
+import MeetOurFarmersScreen from '@/components/ui/screen/homescreen/MeetOurFarmersScreen'
 const stack = createStackNavigator();
 
 
@@ -73,6 +76,22 @@ return(
         <stack.Screen name={'CartScreen'}
         options={{title:'cart'}}
         component={homeCartScreen}/>
+
+        <stack.Screen name={'bookmarkScreen'}
+        options={{title:'bookmark'}}
+        component={homeBookmarkScreen}/>
+
+        <stack.Screen name={'Bidding'}
+        options={{title:'bulk buying'}}
+        component={BulkBuyingScreen}/>
+
+        <stack.Screen name={'BiddingDetails'}
+        options={{title:'Bidding Details'}}
+        component={BiddingDetailsScreen}/>
+
+        <stack.Screen name={'Farmers'}
+        options={{title:'Meet our farmers'}}
+        component={MeetOurFarmersScreen}/>
 
         
     </stack.Navigator>
