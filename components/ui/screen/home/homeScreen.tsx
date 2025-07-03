@@ -221,7 +221,7 @@ const HomeScreen = ({ navigation }: any) => {
 
       <View style={styles.sectionHeader}>
   <Text style={styles.sectionTitle}>Top Deals</Text>
-  <TouchableOpacity onPress={() => navigation.navigate('Products')}>
+  <TouchableOpacity onPress={() => navigation.navigate('TopDeals')}>
     <Text style={styles.seeAll}>See All</Text>
   </TouchableOpacity>
 </View>
@@ -289,14 +289,6 @@ const HomeScreen = ({ navigation }: any) => {
       {/* Value Proposition */}
       <View style={styles.valuePropContainer}>
         <Text style={styles.valuePropTitle}>Why Choose OrganicConnect?</Text>
-        
-        <View style={styles.valuePropItem}>
-          <MaterialIcons name="verified-user" size={28} color="#2E7D32" />
-          <View style={styles.valuePropText}>
-            <Text style={styles.valuePropHeading}>Blockchain-Verified Organic</Text>
-            <Text style={styles.valuePropDescription}>Every product is certified authentic with our transparent blockchain system</Text>
-          </View>
-        </View>
         
         <View style={styles.valuePropItem}>
           <MaterialIcons name="savings" size={28} color="#2E7D32" />

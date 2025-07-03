@@ -15,7 +15,8 @@ import homeCartScreen from '@/components/ui/screen/home/homeCartScreen'
 import homeBookmarkScreen from '@/components/ui/screen/home/homeBookmarkScreen';
 import BulkBuyingScreen from '@/components/ui/screen/homescreen/BulkBuyingScreen';
 import BiddingDetailsScreen from '@/components/ui/screen/homescreen/BiddingDetailsScreen';
-import MeetOurFarmersScreen from '@/components/ui/screen/homescreen/MeetOurFarmersScreen'
+import MeetOurFarmersScreen from '@/components/ui/screen/homescreen/MeetOurFarmersScreen';
+import TopDealsScreen from '@/components/ui/screen/homescreen/TopDealsScreen';
 const stack = createStackNavigator();
 
 
@@ -92,6 +93,11 @@ return(
         <stack.Screen name={'Farmers'}
         options={{title:'Meet our farmers'}}
         component={MeetOurFarmersScreen}/>
+
+         <stack.Screen name={'TopDeals'}
+        options={{title:'Top deals'}}
+        component={TopDealsScreen}/>
+
 
         
     </stack.Navigator>
