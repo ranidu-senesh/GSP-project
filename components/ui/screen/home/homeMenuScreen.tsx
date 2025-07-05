@@ -31,6 +31,6 @@ export default function homeMenuScreen({navigation}:any){
 const styles= StyleSheet.create({
     container:{
         flex:1,
-        backgroundColor: COLORS.red
+        backgroundColor: COLORS.darkGray
     }
 })

@@ -47,38 +47,42 @@ const HomeScreen = ({ navigation }: any) => {
   ];
 
   // Featured products
-  const featuredProducts = [
+  const topDeals = [
     {
       id: 1,
-      name: 'Organic King Coconut',
-      price: 'Rs. 350',
+      name: 'Organic King Coconut (Pack of 3)',
+      price: 'Rs. 900',
+      originalPrice: 'Rs. 1,200',
+      discount: '25% OFF',
+      image: 'https://images.unsplash.com/photo-1601493715053-4fe5ff5d8073?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
       farmer: 'Green Valley Farm',
       rating: 4.7,
-      image: 'https://images.unsplash.com/photo-1601493715053-4fe5ff5d8073?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
-      certified: true,
       deliveryTime: 'Same day delivery'
     },
     {
       id: 2,
-      name: 'Organic Pineapple',
-      price: 'Rs. 550',
-      farmer: 'Eco Harvest Farm',
-      rating: 4.5,
-      image: 'https://images.unsplash.com/photo-1550258987-190a2d41a8ba?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
-      certified: true,
+      name: 'Premium Ceylon Cinnamon (100g)',
+      price: 'Rs. 1,100',
+      originalPrice: 'Rs. 1,500',
+      discount: '27% OFF',
+      image: 'https://images.unsplash.com/photo-1601493700631-2b16ec4b4716?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
+      farmer: 'Matara Spice Garden',
+      rating: 4.8,
       deliveryTime: 'Next day delivery'
     },
     {
       id: 3,
-      name: 'Organic Avocados',
-      price: 'Rs. 1,800',
-      farmer: 'Pure Nature Organics',
-      rating: 4.8,
-      image: 'https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
-      certified: true,
+      name: 'Organic Red Rice (5kg)',
+      price: 'Rs. 2,200',
+      originalPrice: 'Rs. 2,800',
+      discount: '21% OFF',
+      image: 'https://www.srilankabusiness.com/blog/wp-content/uploads/2020/07/red-rice.jpg',
+      farmer: 'Kandy Organic Farms',
+      rating: 4.6,
       deliveryTime: 'Same day delivery'
     },
   ];
+
 
   // Bidding opportunities
   const biddingOpportunities = [
@@ -162,13 +166,6 @@ const HomeScreen = ({ navigation }: any) => {
         </View>
       </View>
 
-      {/* Certification Badge */}
-      <TouchableOpacity style={styles.certificationBanner} onPress={() => navigation.navigate('VerificationInfo')}>
-        <MaterialIcons name="verified-user" size={24} color="#2E7D32" />
-        <Text style={styles.certificationText}>All products are blockchain-verified organic</Text>
-        <MaterialIcons name="chevron-right" size={24} color="#2E7D32" />
-      </TouchableOpacity>
-
       {/* Categories Section */}
       <Text style={styles.sectionTitle}>Shop by Category</Text>
       <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.horizontalScroll}>
@@ -193,7 +190,8 @@ const HomeScreen = ({ navigation }: any) => {
       {/* Featured Farmers */}
       <View style={styles.sectionHeader}>
         <Text style={styles.sectionTitle}>Meet Our Farmers</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('Farmers')}>
+        <TouchableOpacity
+         onPress={() => navigation.navigate('Farmers')}>
           <Text style={styles.seeAll}>See All</Text>
         </TouchableOpacity>
       </View>
@@ -221,48 +219,50 @@ const HomeScreen = ({ navigation }: any) => {
         ))}
       </ScrollView>
 
-      {/* Featured Products */}
       <View style={styles.sectionHeader}>
-        <Text style={styles.sectionTitle}>Fresh From the Farm</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('Products')}>
-          <Text style={styles.seeAll}>See All</Text>
-        </TouchableOpacity>
+  <Text style={styles.sectionTitle}>Top Deals</Text>
+  <TouchableOpacity onPress={() => navigation.navigate('TopDeals')}>
+    <Text style={styles.seeAll}>See All</Text>
+  </TouchableOpacity>
+</View>
+<ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.horizontalScroll}>
+  {topDeals.map((product: any) => (
+    <TouchableOpacity 
+      key={product.id} 
+      style={styles.productCard}
+      onPress={() => navigateToProductDetails(product.id)}
+    >
+      <Image source={{ uri: product.image }} style={styles.productImage} />
+      <View style={styles.productInfo}>
+        <Text style={styles.productName}>{product.name}</Text>
+        <Text style={styles.productFarmer}>By {product.farmer}</Text>
+        <View style={styles.ratingContainer}>
+          {renderStars(product.rating)}
+          <Text style={styles.ratingText}>({product.rating.toFixed(1)})</Text>
+        </View>
+        <Text style={styles.deliveryTime}>
+          <MaterialIcons name="delivery-dining" size={14} color="#666" />
+          {' '}{product.deliveryTime}
+        </Text>
+        <Text style={styles.productPrice}>
+          {product.price}{' '}
+          <Text style={{ color: '#888', textDecorationLine: 'line-through', fontSize: 12 }}>
+            {product.originalPrice}
+          </Text>{' '}
+          <Text style={{ color: '#E53935', fontWeight: 'bold', fontSize: 12 }}>
+            {product.discount}
+          </Text>
+        </Text>
       </View>
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.horizontalScroll}>
-        {featuredProducts.map(product => (
-          <TouchableOpacity 
-            key={product.id} 
-            style={styles.productCard}
-            onPress={() => navigateToProductDetails(product.id)}
-          >
-            <Image source={{ uri: product.image }} style={styles.productImage} />
-            {product.certified && (
-              <View style={styles.certifiedBadge}>
-                <MaterialIcons name="verified" size={14} color="#fff" />
-                <Text style={styles.certifiedText}>Certified</Text>
-              </View>
-            )}
-            <View style={styles.productInfo}>
-              <Text style={styles.productName}>{product.name}</Text>
-              <Text style={styles.productFarmer}>By {product.farmer}</Text>
-              <View style={styles.ratingContainer}>
-                {renderStars(product.rating)}
-                <Text style={styles.ratingText}>({product.rating.toFixed(1)})</Text>
-              </View>
-              <Text style={styles.deliveryTime}>
-                <MaterialIcons name="delivery-dining" size={14} color="#666" />
-                {' '}{product.deliveryTime}
-              </Text>
-              <Text style={styles.productPrice}>{product.price}</Text>
-            </View>
-          </TouchableOpacity>
-        ))}
-      </ScrollView>
+    </TouchableOpacity>
+  ))}
+</ScrollView>
 
       {/* Bidding Opportunities */}
       <View style={styles.sectionHeader}>
         <Text style={styles.sectionTitle}>Bulk Buying Opportunities</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('Bidding')}>
+        <TouchableOpacity 
+        onPress={() => navigation.navigate('Bidding')}>
           <Text style={styles.seeAll}>See All</Text>
         </TouchableOpacity>
       </View>
@@ -289,14 +289,6 @@ const HomeScreen = ({ navigation }: any) => {
       {/* Value Proposition */}
       <View style={styles.valuePropContainer}>
         <Text style={styles.valuePropTitle}>Why Choose OrganicConnect?</Text>
-        
-        <View style={styles.valuePropItem}>
-          <MaterialIcons name="verified-user" size={28} color="#2E7D32" />
-          <View style={styles.valuePropText}>
-            <Text style={styles.valuePropHeading}>Blockchain-Verified Organic</Text>
-            <Text style={styles.valuePropDescription}>Every product is certified authentic with our transparent blockchain system</Text>
-          </View>
-        </View>
         
         <View style={styles.valuePropItem}>
           <MaterialIcons name="savings" size={28} color="#2E7D32" />

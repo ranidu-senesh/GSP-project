@@ -14,10 +14,12 @@ export default function ProductCartGridViewWidget({navigation}:any) {
     return (
         <TouchableOpacity   onPress={()=>navigation.navigate('ProductDetails')}
         style={styles.container}>
-            <TouchableOpacity style={styles.bookmark}>
+            <TouchableOpacity 
+            onPress={()=>navigation.navigate('bookmarkScreen')}
+            style={styles.bookmark}>
              <Icon size={20} source={'heart-outline'} color={COLORS.light}/>
 
-            </TouchableOpacity>
+            </TouchableOpacity> 
 
             <TouchableOpacity style={styles.imageView}>
                 <Image source={{uri:'https://static.vecteezy.com/system/resources/previews/035/267/025/non_2x/ai-generated-slice-ripe-mango-with-drops-closeup-of-mango-fruit-free-photo.jpeg'}} 
@@ -96,7 +98,7 @@ zIndex:1,
     },
 
     image:{
-     width:'100%',
+     width:'10%',
     
      aspectRatio:16/15,
 
