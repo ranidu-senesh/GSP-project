@@ -17,6 +17,8 @@ import BulkBuyingScreen from '@/components/ui/screen/homescreen/BulkBuyingScreen
 import BiddingDetailsScreen from '@/components/ui/screen/homescreen/BiddingDetailsScreen';
 import MeetOurFarmersScreen from '@/components/ui/screen/homescreen/MeetOurFarmersScreen';
 import TopDealsScreen from '@/components/ui/screen/homescreen/TopDealsScreen';
+
+
 const stack = createStackNavigator();
 
 
@@ -53,6 +55,8 @@ return(
         <stack.Screen name={'ProductUpload'}
         options={{title:'Admin panel'}}
         component={ProductUploadScreen}/>
+  
+
 
        <stack.Screen name={'About Us'}
         options={{title:'About Us'}}
@@ -100,6 +104,7 @@ return(
 
 
         
+
     </stack.Navigator>
 )
 }
